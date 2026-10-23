@@ -1,0 +1,17 @@
+{
+  "id": "shadow-3",
+  "mode": "shadow",
+  "taskFamily": "cancel_pending_order",
+  "description": "Shadow trajectory: post-mistake recovery then must-ask",
+  "decisions": [
+    { "step": 1, "confidence": 0.97, "acceptedWouldSucceed": true, "advantage": 0.39 },
+    { "step": 2, "confidence": 0.71, "acceptedWouldSucceed": false, "advantage": -0.37 },
+    { "step": 3, "confidence": 0.64, "acceptedWouldSucceed": false, "advantage": -0.55 },
+    { "step": 4, "confidence": 0.58, "acceptedWouldSucceed": false, "advantage": -0.62 },
+    { "step": 5, "confidence": 0.86, "acceptedWouldSucceed": true, "advantage": 0.27 },
+    { "step": 6, "confidence": 0.94, "acceptedWouldSucceed": true, "advantage": 0.37 },
+    { "step": 7, "confidence": 0.82, "acceptedWouldSucceed": true, "advantage": 0.18 },
+    { "step": 8, "confidence": 0.49, "acceptedWouldSucceed": false, "advantage": -0.47 },
+    { "step": 9, "confidence": 0.99, "acceptedWouldSucceed": true, "advantage": 0.42 }
+  ]
+}

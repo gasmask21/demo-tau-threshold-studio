@@ -1,0 +1,46 @@
+:root {
+  --font-display: 'Newsreader', 'Iowan Old Style', 'Palatino Linotype', Palatino, serif;
+  --font-body: 'Instrument Sans', 'Segoe UI', sans-serif;
+  --ink: #eef6f4;
+  --ink-soft: #d2e0dc;
+  --muted: #8aa39e;
+  --accent: #c8f542;
+  --accent-dim: #9bc22e;
+  --line: rgba(200, 245, 66, 0.14);
+  color-scheme: dark;
+  font-family: var(--font-body);
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background: #061a19;
+  color: var(--ink);
+  line-height: 1.5;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  min-height: 100%;
+}
+
+body {
+  min-width: 320px;
+}
+
+#root {
+  min-height: 100vh;
+}
+
+button:focus-visible,
+input:focus-visible,
+a:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}

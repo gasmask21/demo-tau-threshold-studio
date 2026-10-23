@@ -1,0 +1,16 @@
+{
+  "id": "shadow-1",
+  "mode": "shadow",
+  "taskFamily": "cancel_pending_order",
+  "description": "Shadow trajectory: ambiguous dual-pending cancel (shoes vs jacket)",
+  "decisions": [
+    { "step": 1, "confidence": 0.98, "acceptedWouldSucceed": true, "advantage": 0.41 },
+    { "step": 2, "confidence": 0.95, "acceptedWouldSucceed": true, "advantage": 0.38 },
+    { "step": 3, "confidence": 0.61, "acceptedWouldSucceed": false, "advantage": -0.52 },
+    { "step": 4, "confidence": 0.89, "acceptedWouldSucceed": true, "advantage": 0.33 },
+    { "step": 5, "confidence": 0.74, "acceptedWouldSucceed": false, "advantage": -0.28 },
+    { "step": 6, "confidence": 0.55, "acceptedWouldSucceed": false, "advantage": -0.61 },
+    { "step": 7, "confidence": 0.92, "acceptedWouldSucceed": true, "advantage": 0.36 },
+    { "step": 8, "confidence": 0.48, "acceptedWouldSucceed": false, "advantage": -0.44 }
+  ]
+}

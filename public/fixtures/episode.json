@@ -1,0 +1,129 @@
+{
+  "id": "decisiongym-cancel-lena-wang",
+  "task": "Cancel Lena Wang's pending order — which one?",
+  "customer": "Lena Wang",
+  "context": "Two pending orders (ORD-4412 shoes, ORD-4489 jacket). Customer said 'the pending one' without clarifying.",
+  "source": "DecisionGym-like canned episode (JevAgentHarness paper framing)",
+  "steps": [
+    {
+      "id": 1,
+      "state": "Open ticket; identify customer Lena Wang",
+      "topTools": [
+        { "tool": "lookup_customer", "args": "Lena Wang", "p": 0.97 },
+        { "tool": "search_orders", "args": "Lena", "p": 0.02 }
+      ],
+      "gold": "lookup_customer",
+      "irreversible": false,
+      "mustAsk": false,
+      "note": "Clear identity step"
+    },
+    {
+      "id": 2,
+      "state": "Customer found; list pending orders",
+      "topTools": [
+        { "tool": "list_orders", "args": "status=pending", "p": 0.94 },
+        { "tool": "get_order", "args": "latest", "p": 0.04 }
+      ],
+      "gold": "list_orders",
+      "irreversible": false,
+      "mustAsk": false,
+      "note": "Routine retrieval"
+    },
+    {
+      "id": 3,
+      "state": "Two pending orders returned (ORD-4412, ORD-4489)",
+      "topTools": [
+        { "tool": "ask_user", "args": "which order?", "p": 0.63 },
+        { "tool": "cancel_order", "args": "ORD-4412", "p": 0.37 }
+      ],
+      "gold": "ask_user",
+      "irreversible": false,
+      "mustAsk": true,
+      "note": "MUST-ASK: cancel≈0.37 vs ask_user≈0.63 — ambiguity"
+    },
+    {
+      "id": 4,
+      "state": "User replied: cancel the jacket (ORD-4489)",
+      "topTools": [
+        { "tool": "cancel_order", "args": "ORD-4489", "p": 0.91 },
+        { "tool": "ask_user", "args": "confirm?", "p": 0.06 }
+      ],
+      "gold": "cancel_order",
+      "irreversible": true,
+      "mustAsk": false,
+      "note": "High-confidence correct cancel after clarify"
+    },
+    {
+      "id": 5,
+      "state": "Cancellation queued; notify customer",
+      "topTools": [
+        { "tool": "send_message", "args": "cancelled ORD-4489", "p": 0.88 },
+        { "tool": "create_ticket_note", "args": "done", "p": 0.09 }
+      ],
+      "gold": "send_message",
+      "irreversible": false,
+      "mustAsk": false,
+      "note": "Confirm to user"
+    },
+    {
+      "id": 6,
+      "state": "Also refund shipping? Policy ambiguous for promo orders",
+      "topTools": [
+        { "tool": "refund_shipping", "args": "ORD-4489", "p": 0.72 },
+        { "tool": "ask_user", "args": "refund shipping?", "p": 0.21 }
+      ],
+      "gold": "ask_user",
+      "irreversible": true,
+      "mustAsk": false,
+      "note": "Moderately confident WRONG tool — fixed τ=0.5 would accept"
+    },
+    {
+      "id": 7,
+      "state": "Check warehouse hold before finalize",
+      "topTools": [
+        { "tool": "check_fulfillment", "args": "ORD-4489", "p": 0.81 },
+        { "tool": "stop", "args": "", "p": 0.12 }
+      ],
+      "gold": "check_fulfillment",
+      "irreversible": false,
+      "mustAsk": false,
+      "note": "Useful verify step"
+    },
+    {
+      "id": 8,
+      "state": "Warehouse still packing; expedite cancel",
+      "topTools": [
+        { "tool": "expedite_cancel", "args": "ORD-4489", "p": 0.76 },
+        { "tool": "wait", "args": "30m", "p": 0.15 }
+      ],
+      "gold": "expedite_cancel",
+      "irreversible": false,
+      "mustAsk": false,
+      "note": "Mid confidence — flips around τ≈0.76"
+    },
+    {
+      "id": 9,
+      "state": "Offer store credit vs refund",
+      "topTools": [
+        { "tool": "offer_credit", "args": "15%", "p": 0.58 },
+        { "tool": "ask_user", "args": "credit or refund?", "p": 0.34 }
+      ],
+      "gold": "ask_user",
+      "irreversible": false,
+      "mustAsk": false,
+      "note": "Low-mid confidence preference — accept at 0.5 burns UX"
+    },
+    {
+      "id": 10,
+      "state": "Close ticket after confirmation",
+      "topTools": [
+        { "tool": "close_ticket", "args": "resolved", "p": 0.99 },
+        { "tool": "escalate", "args": "human", "p": 0.01 }
+      ],
+      "gold": "close_ticket",
+      "irreversible": false,
+      "mustAsk": false,
+      "note": "Near-certain safe close"
+    }
+  ]
+}

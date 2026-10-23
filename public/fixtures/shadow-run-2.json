@@ -1,0 +1,17 @@
+{
+  "id": "shadow-2",
+  "mode": "shadow",
+  "taskFamily": "cancel_pending_order",
+  "description": "Shadow trajectory: single pending order (high confidence path)",
+  "decisions": [
+    { "step": 1, "confidence": 0.99, "acceptedWouldSucceed": true, "advantage": 0.44 },
+    { "step": 2, "confidence": 0.96, "acceptedWouldSucceed": true, "advantage": 0.40 },
+    { "step": 3, "confidence": 0.93, "acceptedWouldSucceed": true, "advantage": 0.35 },
+    { "step": 4, "confidence": 0.87, "acceptedWouldSucceed": true, "advantage": 0.29 },
+    { "step": 5, "confidence": 0.68, "acceptedWouldSucceed": false, "advantage": -0.31 },
+    { "step": 6, "confidence": 0.52, "acceptedWouldSucceed": false, "advantage": -0.58 },
+    { "step": 7, "confidence": 0.91, "acceptedWouldSucceed": true, "advantage": 0.34 },
+    { "step": 8, "confidence": 0.77, "acceptedWouldSucceed": true, "advantage": 0.12 },
+    { "step": 9, "confidence": 0.44, "acceptedWouldSucceed": false, "advantage": -0.49 }
+  ]
+}
